@@ -1,0 +1,111 @@
+﻿<Window x:Class="Flowers.View.AddFlowerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Flowers.View"
+        mc:Ignorable="d"
+        Title="AddFlowerWindow"
+        Height="600"
+        Width="500"
+        MinHeight="600"
+        MinWidth="500"
+        Background="#ffebee"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="580" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="490" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+            <Button x:Name="btnAddFlower"
+                    Content="Сохранить"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="4"
+                    Width="160"
+                    Height="40"
+                    FontSize="18"
+                    Margin="80, 0, 0, 40"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Click="btnAddFlower_Click" />
+            
+            <Label Content="Введите название:"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"/>
+            <TextBox x:Name="nameTB"
+                     Grid.Row="1"
+                     FontSize="18"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Margin="50, 10, 50 , 70"
+                     FontFamily="Sitka Display" />
+            
+            <Label Content="Введите описание:"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"
+                   Margin="0"/>
+            <TextBox x:Name="desTB"
+                     Grid.Row="2"
+                     FontSize="18"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Margin="50, 10, 50 , 40"/>
+
+            <Label Content="Введите путь для фотографии:"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   VerticalAlignment="Bottom"
+                   Margin="0" />
+            <TextBox x:Name="pathTB"
+                     Grid.Row="3"
+                     FontSize="18"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Margin="50, 10, 50 , 70" />
+
+            <Button x:Name="addPathBtn"
+                    Content="Добавить путь"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    FontSize="18"
+                    Width="160"
+                    Height="40"
+                    Margin="0, 40, 0, 0"
+                    Click="addPathBtn_Click" />
+        </Grid>
+    </Grid>
+</Window>

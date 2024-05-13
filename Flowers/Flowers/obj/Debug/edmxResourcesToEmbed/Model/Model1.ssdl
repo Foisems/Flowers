@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище FlowerDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Flower">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FlowerInIkebana">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdFlower" />
+      <PropertyRef Name="IdIkebana" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdFlower" Type="int" Nullable="false" />
+    <Property Name="IdIkebana" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ikebana">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="IkebanaInUser">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdUser" />
+      <PropertyRef Name="IdIkebana" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="IdIkebana" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdRole" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_FlowerInIkebana_Flower">
+    <End Role="Flower" Type="Self.Flower" Multiplicity="1" />
+    <End Role="FlowerInIkebana" Type="Self.FlowerInIkebana" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Flower">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlowerInIkebana">
+        <PropertyRef Name="IdFlower" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FlowerInIkebana_Ikebana">
+    <End Role="Ikebana" Type="Self.Ikebana" Multiplicity="1" />
+    <End Role="FlowerInIkebana" Type="Self.FlowerInIkebana" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ikebana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FlowerInIkebana">
+        <PropertyRef Name="IdIkebana" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IkebanaInUser_Ikebana">
+    <End Role="Ikebana" Type="Self.Ikebana" Multiplicity="1" />
+    <End Role="IkebanaInUser" Type="Self.IkebanaInUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ikebana">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IkebanaInUser">
+        <PropertyRef Name="IdIkebana" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IkebanaInUser_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="IkebanaInUser" Type="Self.IkebanaInUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IkebanaInUser">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище FlowerDBModelContainer">
+    <EntitySet Name="Flower" EntityType="Self.Flower" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FlowerInIkebana" EntityType="Self.FlowerInIkebana" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ikebana" EntityType="Self.Ikebana" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IkebanaInUser" EntityType="Self.IkebanaInUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FlowerInIkebana_Flower" Association="Self.FK_FlowerInIkebana_Flower">
+      <End Role="Flower" EntitySet="Flower" />
+      <End Role="FlowerInIkebana" EntitySet="FlowerInIkebana" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FlowerInIkebana_Ikebana" Association="Self.FK_FlowerInIkebana_Ikebana">
+      <End Role="Ikebana" EntitySet="Ikebana" />
+      <End Role="FlowerInIkebana" EntitySet="FlowerInIkebana" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IkebanaInUser_Ikebana" Association="Self.FK_IkebanaInUser_Ikebana">
+      <End Role="Ikebana" EntitySet="Ikebana" />
+      <End Role="IkebanaInUser" EntitySet="IkebanaInUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IkebanaInUser_User" Association="Self.FK_IkebanaInUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="IkebanaInUser" EntitySet="IkebanaInUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

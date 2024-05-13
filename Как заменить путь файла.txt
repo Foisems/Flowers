@@ -1,0 +1,13 @@
+1. Запускаешь запрос SQLQueryForImage.sql
+2. Заменяешь в строке SET Image = CONCAT('C:\Users\Olya\Desktop\', Image); путь в котором будет храниться твоя папка с изображениями
+
+НАПРИМЕР
+
+У меня цветы хранятся по такому пути C:\Users\Olya\Desktop\PPNastya\Image\Flower
+
+я переношу папку \PPNastya на диск D:
+
+и заменяю SET Image = CONCAT('C:\Users\Olya\Desktop\', Image);  НА 
+          SET Image = CONCAT('D:\, Image);
+
+и ВЫПОЛНЯЮ ЗАПРОС в sql

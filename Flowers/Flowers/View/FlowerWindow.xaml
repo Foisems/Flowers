@@ -1,0 +1,96 @@
+﻿<Window x:Class="Flowers.View.FlowerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Flowers.View"
+        mc:Ignorable="d"
+        Title="FlowerWindow"
+        Height="450"
+        Width="650"
+        MinHeight="450"
+        MinWidth="650"
+        Background="#ffebee"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition  Height="430"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="650"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"
+              Grid.Row="1"
+             >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition   />
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition  />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imgFlower"
+                   Width="160"
+                   Height="200"
+                   Grid.RowSpan="2"
+                   HorizontalAlignment="Right"/>
+            <Label x:Name="errorImgLabel"
+                   Visibility="Collapsed"
+                   Content="Ошибка при загрзке фото"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   FontSize="14"/>
+            <ScrollViewer  Grid.Column="1"
+                           Grid.ColumnSpan="2"
+                           
+                           Margin="20">
+                <TextBlock x:Name="nameFlowerTB"
+                           Text="Название: "
+                           TextWrapping="Wrap"
+                           FontSize="18" />
+            </ScrollViewer>
+
+            <ScrollViewer  Grid.Column="1"
+                           Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           Grid.RowSpan="1"
+                           Margin="20, 0, 20, 0">
+                <TextBlock x:Name="desFlowerTB"
+                           Text="Описание: "
+                           TextWrapping="Wrap"
+                           FontSize="18"
+                           />
+            </ScrollViewer>
+
+            <Button x:Name="btnDelFlower"
+                    Content="Удалить"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Width="160"
+                    Height="40"
+                    FontSize="18"
+                    VerticalAlignment="Bottom"
+                    Margin="0, 14"
+                    HorizontalAlignment="Right"
+                    Click="btnDelFlower_Click" />
+            <Button x:Name="btnEditFlower"
+                    Content="Редактировать"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Width="160"
+                    Height="40"
+                    FontSize="18"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Click="btnEditFlower_Click" />
+
+        </Grid>
+    </Grid>
+</Window>
